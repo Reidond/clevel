@@ -61,9 +61,18 @@ name = "clevel"
 version = "0.1.0"
 dependencies = [
  "clap",
+ "foreach",
+ "lazy_static",
  "ron",
  "serde",
+ "simple-matrix",
 ]
+
+[[package]]
+name = "foreach"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6e40f949ebdea38c2472c6b5108809b8d06289ef95e05be0d85db44de03d6d92"
 
 [[package]]
 name = "hermit-abi"
@@ -73,6 +82,12 @@ checksum = "e2c55f143919fbc0bc77e427fe2d74cf23786d7c1875666f2fde3ac3c659bb67"
 dependencies = [
  "libc",
 ]
+
+[[package]]
+name = "lazy_static"
+version = "1.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 
 [[package]]
 name = "libc"
@@ -128,6 +143,12 @@ dependencies = [
  "quote",
  "syn",
 ]
+
+[[package]]
+name = "simple-matrix"
+version = "0.1.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6927a3d2ea606d10c38c7b923e108e29a2f47ca287e1cb707fa898ce4d58aa7c"
 
 [[package]]
 name = "strsim"
