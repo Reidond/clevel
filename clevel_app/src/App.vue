@@ -1,8 +1,12 @@
 <template>
   <v-app>
-    <v-app-bar app> </v-app-bar>
+    <v-app-bar app dense>
+      <v-toolbar-title>Clevel</v-toolbar-title>
+    </v-app-bar>
 
-    <v-content> </v-content>
+    <v-container fluid>
+      <router-view></router-view>
+    </v-container>
   </v-app>
 </template>
 
