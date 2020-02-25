@@ -6,6 +6,24 @@ pub mod models;
 pub use error::ClevelError;
 pub use models::{Model, NormalizedModel};
 
+trait FloatIterExt {
+    fn float_min(&mut self) -> f64;
+    fn float_max(&mut self) -> f64;
+}
+
+impl<T> FloatIterExt for T
+where
+    T: Iterator<Item = f64>,
+{
+    fn float_max(&mut self) -> f64 {
+        self.fold(std::f64::NAN, f64::max)
+    }
+
+    fn float_min(&mut self) -> f64 {
+        self.fold(std::f64::NAN, f64::min)
+    }
+}
+
 lazy_static::lazy_static! {
     pub static ref VERSION: &'static str = {
         let mut version = env!("CARGO_PKG_VERSION").to_string();
@@ -66,7 +84,7 @@ fn weighting_normalization(models: &Vec<Model>) -> Vec<f64> {
 fn calc_desired_value(crisp: f64, min_crisp: f64, max_crisp: f64, t: f64) -> f64 {
     let first = (t - crisp).abs();
     let second: Vec<f64> = vec![t - min_crisp, max_crisp - t];
-    let max_second = second.iter().cloned().fold(0. / 0., f64::max);
+    let max_second = second.iter().cloned().float_max();
     1.0 - (first / max_second)
 }
 
@@ -78,8 +96,8 @@ fn desired_values(models: &Vec<Model>) -> Vec<Vec<f64>> {
             .phased_crisps
             .iter()
             .map(|num: &f64| {
-                let max_val = nm.phased_crisps.iter().cloned().fold(0. / 0., f64::max);
-                let min_val = nm.phased_crisps.iter().cloned().fold(0. / 0., f64::min);
+                let max_val = nm.phased_crisps.iter().cloned().float_max();
+                let min_val = nm.phased_crisps.iter().cloned().float_min();
                 calc_desired_value(*num, min_val, max_val, nm.phased_t)
             })
             .collect();
@@ -132,8 +150,5 @@ pub fn find_head_from_models(models: Vec<Model>) -> f64 {
 
     aggregation_estimates.sort_by(|a, b| a.partial_cmp(b).unwrap_or(Ordering::Greater));
 
-    aggregation_estimates
-        .iter()
-        .cloned()
-        .fold(0. / 0., f64::max)
+    aggregation_estimates.iter().cloned().float_max()
 }
