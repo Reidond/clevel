@@ -61,18 +61,11 @@ name = "clevel"
 version = "0.1.0"
 dependencies = [
  "clap",
- "foreach",
  "lazy_static",
  "ron",
  "serde",
  "simple-matrix",
 ]
-
-[[package]]
-name = "foreach"
-version = "0.3.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6e40f949ebdea38c2472c6b5108809b8d06289ef95e05be0d85db44de03d6d92"
 
 [[package]]
 name = "hermit-abi"
