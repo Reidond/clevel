@@ -1,0 +1,15 @@
+{
+    "folders": [
+        {
+            "name": "Clevel App",
+            "path": "./clevel_app"
+        },
+        {
+            "name": "Clevel Tauri",
+            "path": "./clevel_app/src-tauri"
+        },
+        {
+            "path": "."
+        }
+    ]
+}
