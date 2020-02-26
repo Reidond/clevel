@@ -6,6 +6,13 @@ pub mod models;
 pub use error::ClevelError;
 pub use models::{Model, NormalizedModel};
 
+use serde_json;
+use wasm_bindgen::prelude::*;
+
+#[cfg(feature = "wee_alloc")]
+#[global_allocator]
+static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
+
 trait FloatIterExt {
     fn float_min(&mut self) -> f64;
     fn float_max(&mut self) -> f64;
@@ -136,6 +143,27 @@ fn aggregated_score(matrix: simple_matrix::Matrix<&f64>, weights: Vec<f64>) -> V
 }
 
 pub fn find_head_from_models(models: Vec<Model>) -> f64 {
+    let weights = weighting_normalization(&models);
+    let dv = desired_values(&models);
+    let simple_dv = simplify_desired_values(dv);
+
+    let rows = models.len();
+    let cols = models[0].crisps.len();
+
+    let matrix: simple_matrix::Matrix<&f64> =
+        simple_matrix::Matrix::from_iter(rows, cols, simple_dv.iter());
+
+    let mut aggregation_estimates = aggregated_score(matrix, weights);
+
+    aggregation_estimates.sort_by(|a, b| a.partial_cmp(b).unwrap_or(Ordering::Greater));
+
+    aggregation_estimates.iter().cloned().float_max()
+}
+
+#[wasm_bindgen]
+pub fn find_head_from_models_wasm(models_str: &str) -> f64 {
+    let models = serde_json::from_str(models_str).unwrap();
+
     let weights = weighting_normalization(&models);
     let dv = desired_values(&models);
     let simple_dv = simplify_desired_values(dv);

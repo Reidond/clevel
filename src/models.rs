@@ -1,9 +1,9 @@
 use ron;
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 use std::fs::File;
 use std::io;
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Serialize)]
 pub struct Model {
     pub crisps: Vec<u32>,
     pub a: u32,
@@ -12,7 +12,7 @@ pub struct Model {
     pub p: u32,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Serialize)]
 pub struct NormalizedModel {
     pub phased_crisps: Vec<f64>,
     pub phased_t: f64,
