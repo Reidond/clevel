@@ -1,5 +1,5 @@
 <template>
-  <v-btn color="primary" outlined>Find Head</v-btn>
+  <v-btn color="accent" outlined>Find Head</v-btn>
 </template>
 
 <script>
