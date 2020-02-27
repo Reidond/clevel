@@ -1,21 +1,30 @@
-<template
-  ><v-container fluid
-    ><v-row><v-col cols="4"></v-col></v-row
-  ></v-container>
+<template>
+  <v-container fluid>
+    <v-row align-content="center" align="stretch">
+      <v-col v-for="model in models" :key="model.name" cols="6">
+        <Table :model="model" />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-import FindHeadFromModels from '../components/FindHeadFromModels.vue';
+import { mapState, mapActions } from 'vuex';
+import Table from '../components/Table.vue';
+
 export default {
   name: 'Main',
-    FindHeadFromModels,
-              },
-            ],
-            expertAnswer: 20,
-          },
-        ],
-      },
-    ],
-  }),
+  components: {
+    Table,
+  },
+  data: () => ({}),
+  computed: {
+    ...mapState({
+      models: state => state.modelsModule.models,
+    }),
+  },
+  methods: {
+    ...mapActions(['setCurrentModel']),
+  },
 };
 </script>
