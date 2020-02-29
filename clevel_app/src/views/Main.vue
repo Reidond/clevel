@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container fluid class="mt-10">
     <v-row align-content="center" align="stretch">
       <v-col v-for="model in models" :key="model.name" cols="6">
         <Table :model="model" />

@@ -30,7 +30,7 @@
               <v-card-text>
                 <v-container>
                   <v-row>
-                    <v-col cols="12" sm="6" md="6">
+                    <v-col cols="12">
                       <v-text-field
                         v-model="editedItem.question"
                         filled
