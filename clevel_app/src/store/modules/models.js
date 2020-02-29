@@ -10,46 +10,13 @@ const SET_SETTINGS = 'SET_SETTINGS';
 const models = {
   state: {
     currentModel: {},
-    models: [
-      {
-        id: uuidv4(),
-        name: 'Модель самооцінки',
-        a: 55,
-        b: 120,
-        T: 100,
-        p: 6,
-        questions: [
-          {
-            question: 'Досвід роботи',
-            answers: [
-              {
-                answer: 'До 3 років',
-                score: 10,
+    models: {
+      meta: {
+        experts: null,
+        modelsCount: null,
               },
-              {
-                answer: 'З 3 до 5 років',
-                score: 15,
+      data: [],
               },
-              {
-                answer: 'З 5 до 10 років',
-                score: 20,
-              },
-              {
-                answer: 'Більше 10 років',
-                score: 30,
-              },
-            ],
-          },
-          {
-            question: 'Посада',
-            answers: [
-              {
-                answer: 'Виконавець',
-                score: 20,
-              },
-              {
-                answer: 'Керівник середньої ланки',
-                score: 22,
               },
               {
                 answer: 'Керівник вищої ланки',
