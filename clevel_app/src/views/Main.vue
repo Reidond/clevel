@@ -97,7 +97,6 @@ export default {
     uploadBtn(file) {
       const reader = new FileReader();
       reader.onload = event => {
-        console.log(JSON.stringify(TOML.parse(event.target.result)));
         this.setModel({ model: TOML.parse(event.target.result) });
       };
       reader.readAsText(file);
