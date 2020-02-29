@@ -39,17 +39,12 @@
                     </v-col>
                   </v-row>
                   <v-row>
-                    <v-col cols="6" sm="6" md="6">
-                      <InnerTable
-                        v-model="editedItem.answers"
-                        label="Answers"
-                      ></InnerTable>
-                    </v-col>
-                    <v-col cols="6" sm="6" md="6">
-                      <InnerTable
-                        v-model="editedItem.scores"
-                        label="Scores"
-                      ></InnerTable>
+                    <v-col cols="12">
+                      <MultipleTable
+                        v-model="editedItem"
+                        :keys="['answers', 'scores']"
+                        label="Answer"
+                      ></MultipleTable>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -96,13 +91,13 @@
 
 <script>
 import { mapActions } from 'vuex';
-import InnerTable from './InnerTable.vue';
+import MultipleTable from './MultipleTable.vue';
 import RemoveModel from './RemoveModel.vue';
 import Settings from './Settings.vue';
 
 export default {
   components: {
-    InnerTable,
+    MultipleTable,
     RemoveModel,
     Settings,
   },
@@ -135,13 +130,11 @@ export default {
       question: '',
       answers: [],
       scores: [],
-      expertAnswer: -1,
     },
     defaultItem: {
       question: '',
       answers: [],
       scores: [],
-      expertAnswer: -1,
     },
   }),
 
