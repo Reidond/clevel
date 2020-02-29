@@ -10,15 +10,18 @@
     "tauri:serve": "vue-cli-service tauri:serve"
   },
   "dependencies": {
+    "@iarna/toml": "^2.2.3",
     "@mdi/font": "^3.6.95",
     "core-js": "^3.6.4",
+    "file-saver": "^2.0.2",
     "roboto-fontface": "*",
     "uuid": "^7.0.1",
     "vue": "^2.6.11",
     "vue-router": "^3.1.5",
     "vuetify": "^2.2.11",
     "vuetify-dialog": "^2.0.1",
-    "vuex": "^3.1.2"
+    "vuex": "^3.1.2",
+    "vuex-persist": "^2.2.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.2.0",
