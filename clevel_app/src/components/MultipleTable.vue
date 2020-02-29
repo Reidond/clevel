@@ -6,8 +6,9 @@
           <template v-slot:activator="{ on }">
             <v-btn color="primary" v-on="on">New {{ label }}</v-btn>
           </template>
-          <v-card>
-            <v-card-text class="mt-5">
+          <v-card outlined>
+            <v-card-title class="headline"></v-card-title>
+            <v-card-text>
               <v-text-field
                 v-for="(key, index) in actualKeys"
                 :key="index + 69"

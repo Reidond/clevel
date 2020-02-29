@@ -23,7 +23,7 @@
                 <Settings :model="model" />
               </v-btn-toggle>
             </template>
-            <v-card>
+            <v-card outlined>
               <v-card-title>
                 <span class="headline">{{ formTitle }}</span>
               </v-card-title>
