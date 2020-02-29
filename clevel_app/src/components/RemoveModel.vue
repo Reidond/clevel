@@ -8,7 +8,6 @@
 import { mapActions } from 'vuex';
 
 export default {
-  name: 'RemoveModel',
   props: {
     modelId: {
       type: String,

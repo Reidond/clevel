@@ -6,7 +6,6 @@
 const rust = import('../../../pkg');
 
 export default {
-  name: 'FindHeadFromModels',
   methods: {
     callRust(str) {
       rust.then(m => m.find_head_from_models_wasm(str)).catch(console.error);

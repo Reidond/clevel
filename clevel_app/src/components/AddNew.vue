@@ -36,7 +36,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { mapActions } from 'vuex';
 
 export default {
-  name: 'AddNew',
   data: () => ({
     model: {
       id: uuidv4(),

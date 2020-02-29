@@ -101,7 +101,6 @@ import RemoveModel from './RemoveModel.vue';
 import Settings from './Settings.vue';
 
 export default {
-  name: 'Table',
   components: {
     InnerTable,
     RemoveModel,
@@ -158,11 +157,6 @@ export default {
 
   methods: {
     ...mapActions(['pushQuestion', 'setQuestion']),
-    onClick() {
-      this.pushToModel(this.model);
-      this.dialog = false;
-      this.tableDialog = false;
-    },
     initialize() {
       this.questions.push(
         ...this.model.questions.map(model => {
@@ -184,7 +178,7 @@ export default {
     async deleteItem(item) {
       const index = this.questions.indexOf(item);
       const res = await this.$dialog.confirm({
-        text: 'Do you really want to delete model?',
+        text: 'Do you really want to delete question?',
         title: 'Delete',
       });
 

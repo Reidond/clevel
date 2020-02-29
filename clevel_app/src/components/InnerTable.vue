@@ -55,7 +55,6 @@
 
 <script>
 export default {
-  name: 'InnerTable',
   props: {
     label: {
       type: String,
