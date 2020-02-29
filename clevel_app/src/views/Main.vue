@@ -34,6 +34,11 @@
         <v-card-text>
           <v-form>
             <v-text-field
+              v-model="fileName"
+              label="File name"
+              filled
+            ></v-text-field>
+            <v-text-field
               v-model="experts"
               label="Experts"
               filled
@@ -68,12 +73,13 @@ import TOML from '@iarna/toml';
 
 export default {
   data: () => ({
+    fileName: '',
     dialog: false,
     experts: null,
     modelsCount: null,
   }),
   methods: {
-    ...mapActions(['setFile', 'setModel']),
+    ...mapActions(['setFileName', 'setModel']),
     createBtn() {
       const model = {
         meta: {
@@ -83,9 +89,11 @@ export default {
         data: [],
       };
       this.setModel({ model });
+      this.setFileName({ fileName: `${this.fileName}.toml` });
       this.$router.push('/modelboard');
       this.dialog = false;
     },
+    // TODO: Validate TOML
     uploadBtn(file) {
       const reader = new FileReader();
       reader.onload = event => {
@@ -93,12 +101,13 @@ export default {
         this.setModel({ model: TOML.parse(event.target.result) });
       };
       reader.readAsText(file);
-      this.setFile({ file });
+      this.setFileName({ fileName: file.name });
       this.$router.push('/modelboard');
     },
     async showcase() {
       const { model } = await import('../examples/testData');
       this.setModel({ model });
+      this.setFileName({ fileName: 'test_data.toml' });
       this.$router.push('/modelboard');
     },
   },

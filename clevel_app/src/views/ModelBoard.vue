@@ -4,6 +4,8 @@
       <v-toolbar-title>Clevel</v-toolbar-title>
       <v-spacer></v-spacer>
 
+      <Save />
+
       <AddNew />
 
       <FindHeadFromModels />
@@ -30,6 +32,7 @@
 import { mapState, mapActions } from 'vuex';
 import AddNew from '@/components/AddNew.vue';
 import FindHeadFromModels from '@/components/FindHeadFromModels.vue';
+import Save from '@/components/Save.vue';
 import Table from '../components/Table.vue';
 
 export default {
@@ -37,6 +40,7 @@ export default {
     Table,
     AddNew,
     FindHeadFromModels,
+    Save,
   },
   data: () => ({}),
   computed: {

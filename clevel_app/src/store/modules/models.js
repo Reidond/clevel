@@ -5,11 +5,11 @@ const PUSH_QUESTION = 'PUSH_QUESTION';
 const SET_QUESTION = 'SET_QUESTION';
 const SET_SETTINGS = 'SET_SETTINGS';
 const SET_MODEL = 'SET_MODEL';
-const SET_FILE = 'SET_FILE';
+const SET_FILE_NAME = 'SET_FILE_NAME';
 
 const models = {
   state: {
-    file: null,
+    fileName: null,
     currentModel: {},
     models: {
       meta: {
@@ -26,8 +26,8 @@ const models = {
     [SET_MODEL]: (state, { model }) => {
       state.models = model;
     },
-    [SET_FILE]: (state, { file }) => {
-      state.file = file;
+    [SET_FILE_NAME]: (state, { fileName }) => {
+      state.fileName = fileName;
     },
     [PUSH_TO_MODELS]: (state, { model }) => {
       state.models.data.push(model);
@@ -93,8 +93,8 @@ const models = {
     setModel({ commit }, { model }) {
       commit(SET_MODEL, { model });
     },
-    setFile({ commit }, { file }) {
-      commit(SET_FILE, { file });
+    setFileName({ commit }, { fileName }) {
+      commit(SET_FILE_NAME, { fileName });
     },
   },
 };
