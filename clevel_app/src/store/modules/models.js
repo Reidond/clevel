@@ -6,6 +6,7 @@ const SET_QUESTION = 'SET_QUESTION';
 const SET_SETTINGS = 'SET_SETTINGS';
 const SET_MODEL = 'SET_MODEL';
 const SET_FILE_NAME = 'SET_FILE_NAME';
+const SET_MODELS = 'SET_MODELS';
 
 const models = {
   state: {
@@ -20,6 +21,9 @@ const models = {
     },
   },
   mutations: {
+    [SET_MODELS]: (state, { models }) => {
+      state.models = models;
+    },
     [SET_CURRENT_MODEL]: (state, { model }) => {
       state.currentModel = model;
     },
