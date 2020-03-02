@@ -3,7 +3,7 @@
     <AppBar title="Clevel">
       <Save />
       <AddNew />
-      <FindHeadFromModels />
+      <v-btn outlined to="/testing">Start Testing</v-btn>
     </AppBar>
 
     <v-container fluid class="mt-10">
@@ -26,7 +26,6 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import AddNew from '@/components/AddNew.vue';
-import FindHeadFromModels from '@/components/FindHeadFromModels.vue';
 import Save from '@/components/Save.vue';
 import AppBar from '@/components/AppBar.vue';
 import Table from '../components/Table.vue';
@@ -35,7 +34,6 @@ export default {
   components: {
     Table,
     AddNew,
-    FindHeadFromModels,
     Save,
     AppBar,
   },
