@@ -79,7 +79,7 @@ export default {
     modelsCount: null,
   }),
   methods: {
-    ...mapActions(['setFileName', 'setModel']),
+    ...mapActions(['setFileName', 'setModel', 'setShowcaseMode', 'setExperts']),
     createBtn() {
       const model = {
         meta: {
@@ -105,8 +105,11 @@ export default {
     },
     async showcase() {
       const { model } = await import('../examples/testData');
-      this.setModel({ model });
-      this.setFileName({ fileName: 'test_data.toml' });
+      const { experts } = await import('../examples/expertsData');
+      await this.setModel({ model });
+      await this.setExperts(experts);
+      await this.setFileName({ fileName: 'test_data.toml' });
+      await this.setShowcaseMode(true);
       this.$router.push('/modelboard');
     },
   },
