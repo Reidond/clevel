@@ -1,15 +1,10 @@
 <template>
   <div>
-    <v-app-bar app dense class="mb-8">
-      <v-toolbar-title>Clevel</v-toolbar-title>
-      <v-spacer></v-spacer>
-
+    <AppBar title="Clevel">
       <Save />
-
       <AddNew />
-
       <FindHeadFromModels />
-    </v-app-bar>
+    </AppBar>
 
     <v-container fluid class="mt-10">
       <v-row v-if="isModelsEmpty" align-content="center" align="stretch">
@@ -33,6 +28,7 @@ import { mapState, mapActions } from 'vuex';
 import AddNew from '@/components/AddNew.vue';
 import FindHeadFromModels from '@/components/FindHeadFromModels.vue';
 import Save from '@/components/Save.vue';
+import AppBar from '@/components/AppBar.vue';
 import Table from '../components/Table.vue';
 
 export default {
@@ -41,6 +37,7 @@ export default {
     AddNew,
     FindHeadFromModels,
     Save,
+    AppBar,
   },
   data: () => ({}),
   computed: {
