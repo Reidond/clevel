@@ -7,11 +7,6 @@ import testingModule from './modules/testing';
 const vuexPersist = new VuexPersist({
   key: 'clevel-app',
   storage: window.localStorage,
-  reducer: state => {
-    const { showcaseMode, ...newState } = state;
-    return newState;
-  },
-  filter: mutation => mutation.type !== 'SET_SHOWCASE_MODE',
 });
 
 Vue.use(Vuex);
