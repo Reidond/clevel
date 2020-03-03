@@ -3,15 +3,11 @@ use std::cmp::Ordering;
 pub mod error;
 pub mod models;
 
+#[cfg(target_arch = "wasm32")]
+pub mod wasm;
+
 pub use error::ClevelError;
 pub use models::{Model, NormalizedModel};
-
-use serde_json;
-use wasm_bindgen::prelude::*;
-
-#[cfg(feature = "wee_alloc")]
-#[global_allocator]
-static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 trait FloatIterExt {
     fn float_min(&mut self) -> f64;
@@ -158,19 +154,6 @@ pub fn aggregated_score(models: &Vec<Model>) -> Vec<f64> {
     temp
 }
 
-pub fn find_head_from_models(models: Vec<Model>) -> f64 {
-    let weights = weighting_normalization(&models);
-    let dv = desired_values(&models);
-    let simple_dv = simplify_desired_values(dv);
-
-    let rows = models.len();
-    let cols = models[0].crisps.len();
-
-    let matrix: simple_matrix::Matrix<&f64> =
-        simple_matrix::Matrix::from_iter(rows, cols, simple_dv.iter());
-
-    let mut aggregation_estimates = aggregated_score(matrix, weights);
-
 pub fn find_head_from_models(models: Vec<Model>) -> (String, f64) {
     let aggregation_estimates = aggregated_score(&models);
     let maxf = aggregation_estimates.iter().cloned().float_max();
@@ -184,22 +167,6 @@ pub fn find_head_from_models(models: Vec<Model>) -> (String, f64) {
 
     (expert, maxf)
 }
-
-#[wasm_bindgen]
-pub fn find_head_from_models_wasm(models_str: &str) -> f64 {
-    let models = serde_json::from_str(models_str).unwrap();
-
-    let weights = weighting_normalization(&models);
-    let dv = desired_values(&models);
-    let simple_dv = simplify_desired_values(dv);
-
-    let rows = models.len();
-    let cols = models[0].crisps.len();
-
-    let matrix: simple_matrix::Matrix<&f64> =
-        simple_matrix::Matrix::from_iter(rows, cols, simple_dv.iter());
-
-    let mut aggregation_estimates = aggregated_score(matrix, weights);
 
 pub fn ranking_of_experts(models: &Vec<Model>) -> Vec<f64> {
     let aggregation_estimates = aggregated_score(&models);
