@@ -2,7 +2,7 @@
 name = "clevel"
 version = "0.1.0"
 description = "Assessment of expert competence"
-author = [ "Andrii Shafar <andreyshafar@gmail.com>" ]
+authors = [ "Andrii Shafar <andreyshafar@gmail.com>" ]
 repository = "https://github.com/Reidond/clevel"
 homepage = "https://clevel-app.now.sh"
 readme = "README.md"
