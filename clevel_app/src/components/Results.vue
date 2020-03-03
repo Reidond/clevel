@@ -1,25 +1,40 @@
 <template>
   <div>
     <v-btn color="accent" outlined @click="onBtnClick">Results</v-btn>
-    <v-dialog v-model="dialog" max-width="290">
+    <v-dialog v-model="dialog" max-height="500">
       <v-card outlined>
-        <v-card-title class="headline"
-          >Use Google's location service?</v-card-title
-        >
+        <v-card-title class="headline">Results</v-card-title>
 
         <v-card-text>
-          {{ expectedModels }}
+          <v-container fuild>
+            <v-row class="mb-0">
+              <v-col cols="12">
+                <p>Pанжувальний ряд експертів:</p>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12">
+                <katex-element :expression="katexRanking" />
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <p>
+                  По отриманим даним робимо висновок: експерт
+                  <katex-element :expression="expert" /> набрав максимальну
+                  кількість балів
+                  <katex-element :expression="score.toString()" /> та згідно
+                  умови задачі, вибираємо його керівником експертної групи.
+                </p>
+              </v-col>
+            </v-row>
+          </v-container>
         </v-card-text>
 
         <v-card-actions>
           <v-spacer></v-spacer>
-
           <v-btn color="green darken-1" text @click="dialog = false">
-            Disagree
-          </v-btn>
-
-          <v-btn color="green darken-1" text @click="dialog = false">
-            Agree
+            OK
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -29,12 +44,17 @@
 
 <script>
 import { mapState } from 'vuex';
-// const rust = import('../../../pkg');
+
+const RUST = import('../../../pkg');
 
 export default {
   data: () => ({
     dialog: false,
     expectedModels: [],
+    expert: '',
+    score: 0,
+    ranking: [],
+    katexRanking: '',
   }),
   computed: {
     ...mapState({
@@ -48,37 +68,53 @@ export default {
       this.makeExpectedModels();
     },
     makeExpectedModels() {
-      const destructurizedModels = [
-        ...this.models.map(model => {
-          let wantedModel;
-          this.experts.forEach(expert => {
-            wantedModel = expert.completedModels.find(
-              val => val.id === model.id,
-            );
-          });
-          return wantedModel;
-        }),
-      ];
+      const allCompletedModels = this.experts
+        .map(exp => exp.completedModels)
+        .flat();
+
+      const mids = this.models.map(el => el.id);
+      const allModelsScores = mids.reduce((obj, id) => {
+        const rest = allCompletedModels.filter(m => m.id === id);
+        if (rest) {
+          obj[id] = rest.map(r =>
+            // eslint-disable-next-line no-return-assign
+            r.answers.reduce((sum, el) => (sum += el.score), 0),
+          );
+        }
+
+        return obj;
+      }, {});
+
       const modelsMeta = [
         ...this.models.map(model => {
           return {
             a: model.a,
             b: model.b,
-            T: model.T,
+            t: model.T,
             p: model.p,
           };
         }),
       ];
       const combinedModels = [
-        ...destructurizedModels.map((m, i) => {
-          return { m, ...modelsMeta[i] };
+        ...Object.values(allModelsScores).map((crisps, i) => {
+          return { crisps, ...modelsMeta[i] };
         }),
       ];
-      console.log(combinedModels);
+      this.expectedModels = combinedModels;
+      this.callRust(JSON.stringify(combinedModels));
     },
-    // callRust(str) {
-    //   rust.then(m => m.find_head_from_models_wasm(str)).catch(console.error);
-    // },
+    callRust(str) {
+      RUST.then(m => {
+        this.ranking = m.rankingOfExperts(str);
+        this.ranking = this.ranking.map(r => r.toFixed(3));
+        this.katexRanking = `\\Alpha = \\{ ${this.ranking} \\}`;
+      }).catch(console.error);
+      RUST.then(m => {
+        const [expert, score] = m.findHead(str);
+        this.expert = expert;
+        this.score = score.toFixed(3);
+      }).catch(console.error);
+    },
   },
 };
 </script>
