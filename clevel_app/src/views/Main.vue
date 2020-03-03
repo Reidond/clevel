@@ -80,7 +80,7 @@ export default {
   }),
   methods: {
     ...mapActions(['setFileName', 'setModel', 'setShowcaseMode', 'setExperts']),
-    createBtn() {
+    async createBtn() {
       const model = {
         meta: {
           experts: +this.experts,
@@ -90,17 +90,19 @@ export default {
       };
       this.setModel({ model });
       this.setFileName({ fileName: `${this.fileName}.toml` });
+      await this.setShowcaseMode(false);
       this.$router.push('/modelboard');
       this.dialog = false;
     },
     // TODO: Validate TOML
-    uploadBtn(file) {
+    async uploadBtn(file) {
       const reader = new FileReader();
       reader.onload = event => {
         this.setModel({ model: TOML.parse(event.target.result) });
       };
       reader.readAsText(file);
       this.setFileName({ fileName: file.name });
+      await this.setShowcaseMode(false);
       this.$router.push('/modelboard');
     },
     async showcase() {
