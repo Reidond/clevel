@@ -1,7 +1,7 @@
 use clap::{App, Arg};
 use clevel::*;
 
-fn execute(input: &[String]) -> Result<f64, ClevelError> {
+fn execute(input: &[String]) -> Result<(String, f64), ClevelError> {
     let app = App::new("clevel")
         .version(*crate::VERSION)
         .author("Andrii Shafar <andreyshafar@gmail.com>")
@@ -36,6 +36,7 @@ fn execute(input: &[String]) -> Result<f64, ClevelError> {
 
 fn main() {
     let args: Vec<_> = std::env::args().collect();
+    let results = execute(&args).unwrap();
 
-    println!("{:.3}", execute(&args).unwrap());
+    println!("{} -> {:.3}", results.0, results.1);
 }
