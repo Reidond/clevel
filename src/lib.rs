@@ -201,7 +201,10 @@ pub fn find_head_from_models_wasm(models_str: &str) -> f64 {
 
     let mut aggregation_estimates = aggregated_score(matrix, weights);
 
-    aggregation_estimates.sort_by(|a, b| a.partial_cmp(b).unwrap_or(Ordering::Greater));
+pub fn ranking_of_experts(models: &Vec<Model>) -> Vec<f64> {
+    let aggregation_estimates = aggregated_score(&models);
+    let mut sorted_aggregation_estimates = aggregation_estimates.clone();
+    sorted_aggregation_estimates.sort_by(|a, b| a.partial_cmp(b).unwrap_or(Ordering::Greater));
 
-    aggregation_estimates.iter().cloned().float_max()
+    sorted_aggregation_estimates.iter().rev().cloned().collect()
 }
