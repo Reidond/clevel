@@ -21,10 +21,17 @@
               <v-col>
                 <p>
                   По отриманим даним робимо висновок: експерт
-                  <katex-element :expression="expert" /> набрав максимальну
-                  кількість балів
-                  <katex-element :expression="score.toString()" /> та згідно
-                  умови задачі, вибираємо його керівником експертної групи.
+                  <katex-element
+                    class="font-weight-bold"
+                    :expression="expert"
+                  />
+                  набрав максимальну кількість балів
+                  <katex-element
+                    class="font-weight-bold"
+                    :expression="score.toString()"
+                  />
+                  та згідно умови задачі, вибираємо його керівником експертної
+                  групи.
                 </p>
               </v-col>
             </v-row>
@@ -44,8 +51,6 @@
 
 <script>
 import { mapState } from 'vuex';
-
-const RUST = import('../../../pkg');
 
 export default {
   data: () => ({
@@ -104,16 +109,36 @@ export default {
       this.callRust(JSON.stringify(combinedModels));
     },
     callRust(str) {
-      RUST.then(m => {
-        this.ranking = m.rankingOfExperts(str);
-        this.ranking = this.ranking.map(r => r.toFixed(3));
-        this.katexRanking = `\\Alpha = \\{ ${this.ranking} \\}`;
-      }).catch(console.error);
-      RUST.then(m => {
-        const [expert, score] = m.findHead(str);
-        this.expert = expert;
-        this.score = score.toFixed(3);
-      }).catch(console.error);
+      let clevel = import('clevel');
+
+      if (process.env.NODE_ENV !== 'production') {
+        clevel = import('../../../pkg');
+      }
+
+      clevel
+        .then(m => {
+          this.ranking = m.rankingOfExperts(str);
+          this.ranking = this.ranking.map(r => r.toFixed(3));
+          this.katexRanking = `\\Alpha = \\{ ${this.ranking} \\}`;
+        })
+        .catch(e =>
+          this.$dialog.error({
+            text: e,
+            title: 'Clevel WASM Error',
+          }),
+        );
+      clevel
+        .then(m => {
+          const [expert, score] = m.findHead(str);
+          this.expert = expert;
+          this.score = score.toFixed(3);
+        })
+        .catch(e =>
+          this.$dialog.error({
+            text: e,
+            title: 'Clevel WASM Error',
+          }),
+        );
     },
   },
 };
