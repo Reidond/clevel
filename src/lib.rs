@@ -125,15 +125,31 @@ fn simplify_desired_values(dv: Vec<Vec<f64>>) -> Vec<f64> {
     new_dv
 }
 
-fn aggregated_score(matrix: simple_matrix::Matrix<&f64>, weights: Vec<f64>) -> Vec<f64> {
+fn initialize_matrix(models: &Vec<Model>) -> simple_matrix::Matrix<f64> {
+    let dv = desired_values(&models);
+    let simple_dv = simplify_desired_values(dv);
+
+    let rows = models.len();
+    let cols = models[0].crisps.len();
+
+    let matrix: simple_matrix::Matrix<f64> =
+        simple_matrix::Matrix::from_iter(rows, cols, simple_dv.iter().cloned());
+
+    matrix
+}
+
+pub fn aggregated_score(models: &Vec<Model>) -> Vec<f64> {
+    let weights = weighting_normalization(&models);
+    let matrix = initialize_matrix(&models);
+
     let mut temp: Vec<f64> = vec![];
 
     for col in 0..matrix.cols() {
-        let get_col = matrix.get_col(col).unwrap().collect::<Vec<&&f64>>();
+        let get_col = matrix.get_col(col).unwrap().collect::<Vec<&f64>>();
         let mut res: Vec<f64> = vec![];
 
         for row in 0..matrix.rows() {
-            res.push(**get_col[row] * weights[row])
+            res.push(*get_col[row] * weights[row])
         }
 
         temp.push(res.iter().sum())
