@@ -1,8 +1,24 @@
 [package]
 name = "clevel"
 version = "0.1.0"
-authors = ["reidond"]
+description = "Assessment of expert competence"
+author = [ "Andrii Shafar <andreyshafar@gmail.com>" ]
+repository = "https://github.com/Reidond/clevel"
+homepage = "https://clevel-app.now.sh"
+readme = "README.md"
+license-file = "LICENSE"
+keywords = ["wasm", "library", "assessment", "expert", "competence"]
+categories = ["wasm", "parsing", "data-structures", "command-line-utilities"]
 edition = "2018"
+exclude = [
+    "examples/",
+    "pkg/",
+    ".vscode/",
+    "clevel_app",
+    "clevel-app.code-workspace",
+    ".editorconfig",
+    ".gitignore"
+]
 
 [lib]
 crate-type = ["cdylib", "rlib"]
