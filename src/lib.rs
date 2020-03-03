@@ -171,9 +171,18 @@ pub fn find_head_from_models(models: Vec<Model>) -> f64 {
 
     let mut aggregation_estimates = aggregated_score(matrix, weights);
 
-    aggregation_estimates.sort_by(|a, b| a.partial_cmp(b).unwrap_or(Ordering::Greater));
+pub fn find_head_from_models(models: Vec<Model>) -> (String, f64) {
+    let aggregation_estimates = aggregated_score(&models);
+    let maxf = aggregation_estimates.iter().cloned().float_max();
+    let mut expert: String = String::new();
 
-    aggregation_estimates.iter().cloned().float_max()
+    for (index, item) in aggregation_estimates.iter().enumerate() {
+        if *item == maxf {
+            expert = format!("Expert {}", index + 1);
+        }
+    }
+
+    (expert, maxf)
 }
 
 #[wasm_bindgen]
