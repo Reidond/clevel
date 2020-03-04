@@ -29,13 +29,13 @@ jobs:
               env:
                   NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
     publish-crates:
+        name: Publish Crates.io
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@master
             - uses: hecrj/setup-rust-action@v1
               with:
                   rust-version: 1.41.1
-            - uses: thiagoarrais/action-cargo@master
             - run: |
                   cargo login $CRATES_AUTH_TOKEN
                   cargo publish --allow-dirty
