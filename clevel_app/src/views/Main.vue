@@ -31,6 +31,10 @@
                 </i18n>
               </v-form>
             </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <ChangeLocale />
+            </v-card-actions>
           </v-card>
         </v-col>
       </v-row>
@@ -80,8 +84,12 @@
 <script>
 import { mapActions } from 'vuex';
 import TOML from '@iarna/toml';
+import ChangeLocale from '@/components/ChangeLocale.vue';
 
 export default {
+  components: {
+    ChangeLocale,
+  },
   data: () => ({
     fileName: '',
     dialog: false,
