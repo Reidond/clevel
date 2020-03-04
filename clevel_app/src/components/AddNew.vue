@@ -1,11 +1,13 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="600px">
     <template v-slot:activator="{ on }">
-      <v-btn color="accent" class="mr-3" outlined v-on="on">Add New</v-btn>
+      <v-btn color="accent" class="mr-3" outlined v-on="on">{{
+        $t('add-new.btn')
+      }}</v-btn>
     </template>
-    <v-card>
+    <v-card outlined>
       <v-card-title>
-        <span class="headline">Add New Model</span>
+        <span class="headline">{{ $t('add-new.title') }}</span>
       </v-card-title>
       <v-card-text>
         <v-container>
@@ -13,19 +15,23 @@
             <v-col cols="12">
               <v-text-field
                 v-model="model.name"
-                label="Name of model*"
+                :label="$t('add-new.text-field')"
                 required
                 filled
               ></v-text-field>
             </v-col>
           </v-row>
         </v-container>
-        <small>*indicates required field</small>
+        <small>{{ $t('add-new.notice') }}</small>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-        <v-btn color="blue darken-1" text @click="onClick">Save</v-btn>
+        <v-btn color="blue darken-1" text @click="dialog = false">{{
+          $t('add-new.btn-close')
+        }}</v-btn>
+        <v-btn color="blue darken-1" text @click="onClick">{{
+          $t('add-new.btn-save')
+        }}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

@@ -1,8 +1,8 @@
 <template
-  ><v-btn color="green" class="mr-3" primary @click="save"
-    >Save</v-btn
-  ></template
->
+  ><v-btn color="green" class="mr-3" primary @click="save">{{
+    $t('save.btn')
+  }}</v-btn>
+</template>
 
 <script>
 import TOML from '@iarna/toml';

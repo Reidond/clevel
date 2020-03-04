@@ -3,7 +3,7 @@
     <AppBar title="Clevel">
       <Save />
       <AddNew />
-      <v-btn outlined to="/testing">Start Testing</v-btn>
+      <v-btn outlined to="/testing">{{ $t('model-board.btn') }}</v-btn>
     </AppBar>
 
     <v-container fluid class="mt-10">
@@ -15,7 +15,7 @@
       <v-row v-else align-content="center" align="stretch">
         <v-col cols="6" class="text-center">
           <p class="title">
-            Create some models using the app bar "Add New" button...
+            {{ $t('model-board.empty') }}
           </p>
         </v-col>
       </v-row>

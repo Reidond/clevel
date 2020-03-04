@@ -18,7 +18,9 @@
           <v-dialog v-model="tableDialog" max-width="500px">
             <template v-slot:activator="{ on }">
               <v-btn-toggle>
-                <v-btn color="primary" outlined dark v-on="on">New Item</v-btn>
+                <v-btn color="primary" outlined dark v-on="on">{{
+                  $t('table.new-item-btn')
+                }}</v-btn>
                 <RemoveModel :model-id="model.id" />
                 <Settings :model="model" />
               </v-btn-toggle>
@@ -34,7 +36,7 @@
                       <v-text-field
                         v-model="editedItem.question"
                         filled
-                        label="Question"
+                        :label="$t('table.card.text-field')"
                       ></v-text-field>
                     </v-col>
                   </v-row>
@@ -43,7 +45,7 @@
                       <MultipleTable
                         v-model="editedItem"
                         :keys="['answers', 'scores']"
-                        label="Answer"
+                        :label="$t('table.multiple-table-label')"
                       ></MultipleTable>
                     </v-col>
                   </v-row>
@@ -52,8 +54,12 @@
 
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-                <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+                <v-btn color="blue darken-1" text @click="close">{{
+                  $t('table.card.actions.close')
+                }}</v-btn>
+                <v-btn color="blue darken-1" text @click="save">{{
+                  $t('table.card.actions.save')
+                }}</v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
@@ -110,37 +116,53 @@ export default {
       }),
     },
   },
-  data: () => ({
-    tableDialog: false,
-    settingsDialog: false,
-    headers: [
-      {
-        text: 'Назва критерію (питання)',
-        align: 'start',
-        sortable: false,
-        value: 'question',
+  data() {
+    return {
+      tableDialog: false,
+      settingsDialog: false,
+      headers: [
+        {
+          text: this.$i18n.t('table.headers.question'),
+          align: 'start',
+          sortable: false,
+          value: 'question',
+        },
+        {
+          text: this.$i18n.t('table.headers.answers'),
+          value: 'answers',
+          sortable: false,
+        },
+        {
+          text: this.$i18n.t('table.headers.scores'),
+          value: 'scores',
+          sortable: false,
+        },
+        {
+          text: this.$i18n.t('table.headers.action'),
+          value: 'action',
+          sortable: false,
+        },
+      ],
+      questions: [],
+      editedIndex: -1,
+      editedItem: {
+        question: '',
+        answers: [],
+        scores: [],
       },
-      { text: 'Відповідь на питання', value: 'answers', sortable: false },
-      { text: 'Бальна оцінка', value: 'scores', sortable: false },
-      { text: 'Actions', value: 'action', sortable: false },
-    ],
-    questions: [],
-    editedIndex: -1,
-    editedItem: {
-      question: '',
-      answers: [],
-      scores: [],
-    },
-    defaultItem: {
-      question: '',
-      answers: [],
-      scores: [],
-    },
-  }),
+      defaultItem: {
+        question: '',
+        answers: [],
+        scores: [],
+      },
+    };
+  },
 
   computed: {
     formTitle() {
-      return this.editedIndex === -1 ? 'New Item' : 'Edit Item';
+      return this.editedIndex === -1
+        ? this.$t('table.card.title.new')
+        : this.$t('table.card.title.edit');
     },
   },
 
@@ -171,8 +193,8 @@ export default {
     async deleteItem(item) {
       const index = this.questions.indexOf(item);
       const res = await this.$dialog.confirm({
-        text: 'Do you really want to delete question?',
-        title: 'Delete',
+        text: this.$t('table.dialog.text'),
+        title: this.$t('table.dialog.title'),
       });
 
       if (res) {

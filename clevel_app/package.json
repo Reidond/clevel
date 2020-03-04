@@ -6,6 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'",
     "tauri:build": "vue-cli-service tauri:build",
     "tauri:serve": "vue-cli-service tauri:serve"
   },
@@ -19,6 +20,7 @@
     "roboto-fontface": "*",
     "uuid": "^7.0.1",
     "vue": "^2.6.11",
+    "vue-i18n": "^8.0.0",
     "vue-katex": "^0.4.0",
     "vue-router": "^3.1.5",
     "vuetify": "^2.2.11",
@@ -46,6 +48,7 @@
     "sass": "^1.25.0",
     "sass-loader": "^8.0.2",
     "text-encoding-shim": "^1.0.5",
+    "vue-cli-plugin-i18n": "~0.6.1",
     "vue-cli-plugin-tauri": "0.0.5",
     "vue-cli-plugin-vuetify": "~2.0.5",
     "vue-template-compiler": "^2.6.11",
