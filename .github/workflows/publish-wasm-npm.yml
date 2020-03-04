@@ -29,7 +29,6 @@ jobs:
               run: |
                   wasm-pack build
                   cd pkg/
-                  npm ci
                   npm publish
               env:
                   NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
