@@ -1,0 +1,32 @@
+name: Publish WASM
+
+on:
+    push:
+        branches:
+            - master
+
+jobs:
+    publish:
+        name: Publish WASM
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout
+              uses: actions/checkout@master
+            - name: node
+              uses: actions/setup-node@v1
+              with:
+                  node-version: 12
+                  registry-url: https://registry.npmjs.org/
+            - name: rust
+              uses: hecrj/setup-rust-action@v1
+              with:
+                  rust-version: 1.41.1
+                  targets: wasm32-unknown-unknown
+            - name: wasm-pack
+              run: |
+                  curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+            - name: publish
+              run: |
+                  wasm-pack publish --access public
+              env:
+                  NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
