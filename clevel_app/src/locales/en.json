@@ -16,5 +16,14 @@
   "remove-model": {
     "btn": "Remove"
   },
+  "results": {
+    "error": "Clevel WASM Error",
+    "card": {
+      "btn": "Results",
+      "title": "Results",
+      "row-1": "Expert ranking:",
+      "row-3": "On the received data we conclude: expert {katexExpert} scored maximum points {katexScore} and according to the condition of the task, we choose him as the head of the expert group.",
+      "action": "OK"
+    }
   }
 }
