@@ -1,4 +1,4 @@
-name: Publish NPM
+name: Publish
 
 on:
     push:
@@ -6,7 +6,8 @@ on:
             - master
 
 jobs:
-    publish:
+    publish-npm:
+        name: Publish NPM
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@master
@@ -27,3 +28,16 @@ jobs:
                   npm publish
               env:
                   NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+    publish-crates:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@master
+            - uses: hecrj/setup-rust-action@v1
+              with:
+                  rust-version: 1.41.1
+            - uses: thiagoarrais/action-cargo@master
+            - run: |
+                  cargo login $CRATES_AUTH_TOKEN
+                  cargo publish --allow-dirty
+              env:
+                  CRATES_AUTH_TOKEN: ${{secrets.CRATES_AUTH_TOKEN}}
