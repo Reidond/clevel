@@ -9,26 +9,21 @@ jobs:
     publish:
         runs-on: ubuntu-latest
         steps:
-            - name: checkout
-              uses: actions/checkout@master
-            - name: rust
-              uses: hecrj/setup-rust-action@v1
+            - uses: actions/checkout@master
+            - uses: hecrj/setup-rust-action@v1
               with:
                   rust-version: 1.41.1
                   targets: wasm32-unknown-unknown
-            - name: wasm-pack
-              run: |
+            - run: |
                   curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-            - name: build
-              run: |
+            - run: |
                   wasm-pack build
-            - name: publish gpr
-              uses: actions/setup-node@v1
+            - uses: actions/setup-node@v1
               with:
                   node-version: 12
                   registry-url: https://npm.pkg.github.com/
-                  scope: "@reidond"
-              run: |
+                  scope: "@your-github-username"
+            - run: |
                   cd pkg/
                   npm publish
               env:
