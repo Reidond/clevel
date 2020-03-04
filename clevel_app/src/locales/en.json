@@ -12,5 +12,9 @@
     "btn-close": "Close",
     "btn-edit": "Edit",
     "btn-save": "Save"
+  },
+  "remove-model": {
+    "btn": "Remove"
+  },
   }
 }
