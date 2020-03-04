@@ -79,5 +79,9 @@
       "action-cancel": "Cancel",
       "action-create": "Create"
     }
+  },
+  "model-board": {
+    "btn": "Start Testing",
+    "empty": "Create some models using the app bar 'Add New' button..."
   }
 }
