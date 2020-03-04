@@ -28,5 +28,13 @@
   },
   "save": {
     "btn": "Save"
+  },
+  "settings": {
+    "btn": "Settings",
+    "card": {
+      "title": "Settings",
+      "action-cancel": "Cancel",
+      "action-save": "Save"
+    }
   }
 }
