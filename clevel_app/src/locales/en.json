@@ -6,5 +6,11 @@
     "title": "Add New Model",
     "text-field": "Name of model*",
     "notice": "*indicates required field"
+  },
+  "multiple-table": {
+    "btn-new": "New {label}",
+    "btn-close": "Close",
+    "btn-edit": "Edit",
+    "btn-save": "Save"
   }
 }

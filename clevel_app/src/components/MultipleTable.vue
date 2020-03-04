@@ -4,7 +4,9 @@
       <v-col>
         <v-dialog v-model="dialog" persistent max-width="290">
           <template v-slot:activator="{ on }">
-            <v-btn color="primary" v-on="on">New {{ label }}</v-btn>
+            <v-btn color="primary" v-on="on">{{
+              $t('multiple-table.btn-new', { label })
+            }}</v-btn>
           </template>
           <v-card outlined>
             <v-card-title class="headline"></v-card-title>
@@ -20,13 +22,19 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="green darken-1" text @click="close">Close</v-btn>
-              <v-btn v-if="isEditing" color="yellow darken-1" text @click="save"
-                >Edit</v-btn
+              <v-btn color="green darken-1" text @click="close">{{
+                $t('multiple-table.btn-close')
+              }}</v-btn>
+              <v-btn
+                v-if="isEditing"
+                color="yellow darken-1"
+                text
+                @click="save"
+                >{{ $t('multiple-table.btn-edit') }}</v-btn
               >
-              <v-btn v-else color="green darken-1" text @click="save"
-                >Create</v-btn
-              >
+              <v-btn v-else color="green darken-1" text @click="save">{{
+                $t('multiple-table.btn-save')
+              }}</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
