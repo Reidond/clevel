@@ -8,6 +8,7 @@
 
 module.exports = {
   transpileDependencies: ['vuetify'],
+
   configureWebpack: {
     // plugins: [
     //   new webpack.LoaderOptionsPlugin({
@@ -29,5 +30,14 @@ module.exports = {
     //     TextEncoder,
     //   }),
     // ],
+  },
+
+  pluginOptions: {
+    i18n: {
+      locale: 'uk_UA',
+      fallbackLocale: 'en',
+      localeDir: 'locales',
+      enableInSFC: false,
+    },
   },
 };

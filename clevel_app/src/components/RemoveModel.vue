@@ -1,6 +1,8 @@
 <template>
   <div>
-    <v-btn color="error" outlined @click="removeModel(modelId)">Remove</v-btn>
+    <v-btn color="error" outlined @click="removeModel(modelId)">{{
+      $t('remove-model.btn')
+    }}</v-btn>
   </div>
 </template>
 

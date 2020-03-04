@@ -3,14 +3,14 @@
     <v-row>
       <v-col>
         <v-btn-toggle>
-          <v-btn class="pr-2" to="/modelboard">Back</v-btn>
+          <v-btn class="pr-2" to="/modelboard">{{ $t('testing.back') }}</v-btn>
           <Results />
         </v-btn-toggle>
       </v-col>
     </v-row>
     <v-row>
       <v-col>
-        <p class="display-1 font-weight-black">Experts</p>
+        <p class="display-1 font-weight-black">{{ $t('testing.experts') }}</p>
       </v-col>
     </v-row>
     <v-row>
@@ -22,7 +22,7 @@
     </v-row>
     <v-row>
       <v-col>
-        <p class="display-1 font-weight-black">Models</p>
+        <p class="display-1 font-weight-black">{{ $t('testing.models') }}</p>
       </v-col>
     </v-row>
     <v-row>
@@ -34,7 +34,7 @@
     </v-row>
     <v-row>
       <v-col>
-        <p class="display-1 font-weight-black">Questions</p>
+        <p class="display-1 font-weight-black">{{ $t('testing.questions') }}</p>
         <v-chip
           v-if="Object.keys(currentExpert).length > 1"
           class="ma-2"
@@ -61,17 +61,17 @@
         cols="12"
       >
         <p class="body-1">
-          Choose expert and model.
+          {{ $t('testing.err-1') }}
         </p>
       </v-col>
       <v-col v-else-if="stepperCompleted" cols="12">
         <p class="body-1">
-          You have completed this model. Choose another or same one to repeat.
+          {{ $t('testing.err-2') }}
         </p>
       </v-col>
       <v-col v-else-if="isLoading" cols="12">
         <p class="body-1">
-          Loading...
+          {{ $t('testing.loading') }}
         </p>
       </v-col>
       <v-col v-else cols="12">
@@ -82,7 +82,7 @@
               :key="index + currentModel.id"
               :complete="stepper > index + 1"
               :step="index + 1"
-              >{{ `Question ${index + 1}` }}</v-stepper-step
+              >{{ $t('testing.step', { index: index + 1 }) }}</v-stepper-step
             >
           </v-stepper-header>
 
@@ -107,7 +107,7 @@
               </v-card>
 
               <v-btn color="primary" @click="onClickStepperBtn(index)">
-                Continue
+                {{ $t('testing.continue') }}
               </v-btn>
             </v-stepper-content>
           </v-stepper-items>

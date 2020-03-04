@@ -1,15 +1,19 @@
 <template>
   <div>
-    <v-btn color="accent" outlined @click="onBtnClick">Results</v-btn>
+    <v-btn color="accent" outlined @click="onBtnClick">{{
+      $t('results.card.btn')
+    }}</v-btn>
     <v-dialog v-model="dialog" max-height="500">
       <v-card outlined>
-        <v-card-title class="headline">Results</v-card-title>
+        <v-card-title class="headline">{{
+          $t('results.card.title')
+        }}</v-card-title>
 
         <v-card-text>
           <v-container fuild>
             <v-row class="mb-0">
               <v-col cols="12">
-                <p>Pанжувальний ряд експертів:</p>
+                <p>{{ $t('results.card.row-1') }}</p>
               </v-col>
             </v-row>
             <v-row>
@@ -19,20 +23,20 @@
             </v-row>
             <v-row>
               <v-col>
-                <p>
-                  По отриманим даним робимо висновок: експерт
-                  <katex-element
-                    class="font-weight-bold"
-                    :expression="expert"
-                  />
-                  набрав максимальну кількість балів
-                  <katex-element
-                    class="font-weight-bold"
-                    :expression="score.toString()"
-                  />
-                  та згідно умови задачі, вибираємо його керівником експертної
-                  групи.
-                </p>
+                <i18n path="results.card.row-3" tag="p">
+                  <template v-slot:katexExpert>
+                    <katex-element
+                      class="font-weight-bold"
+                      :expression="expert"
+                    />
+                  </template>
+                  <template v-slot:katexScore>
+                    <katex-element
+                      class="font-weight-bold"
+                      :expression="score.toString()"
+                    />
+                  </template>
+                </i18n>
               </v-col>
             </v-row>
           </v-container>
@@ -41,7 +45,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="green darken-1" text @click="dialog = false">
-            OK
+            {{ $t('results.card.action') }}
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -124,7 +128,7 @@ export default {
         .catch(e =>
           this.$dialog.error({
             text: e,
-            title: 'Clevel WASM Error',
+            title: this.$t('results.error'),
           }),
         );
       clevel
@@ -136,7 +140,7 @@ export default {
         .catch(e =>
           this.$dialog.error({
             text: e,
-            title: 'Clevel WASM Error',
+            title: this.$t('results.error'),
           }),
         );
     },

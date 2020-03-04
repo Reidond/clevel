@@ -1,0 +1,98 @@
+{
+  "add-new": {
+    "btn": "Add New",
+    "btn-save": "Save",
+    "btn-close": "Close",
+    "title": "Add New Model",
+    "text-field": "Name of model*",
+    "notice": "*indicates required field"
+  },
+  "multiple-table": {
+    "btn-new": "New {label}",
+    "btn-close": "Close",
+    "btn-edit": "Edit",
+    "btn-save": "Save"
+  },
+  "remove-model": {
+    "btn": "Remove"
+  },
+  "results": {
+    "error": "Clevel WASM Error",
+    "card": {
+      "btn": "Results",
+      "title": "Results",
+      "row-1": "Expert ranking:",
+      "row-3": "On the received data we conclude: expert {katexExpert} scored maximum points {katexScore} and according to the condition of the task, we choose him as the head of the expert group.",
+      "action": "OK"
+    }
+  },
+  "save": {
+    "btn": "Save"
+  },
+  "settings": {
+    "btn": "Settings",
+    "card": {
+      "title": "Settings",
+      "action-cancel": "Cancel",
+      "action-save": "Save"
+    }
+  },
+  "table": {
+    "new-item-btn": "New Item",
+    "card": {
+      "title": {
+        "new": "New Item",
+        "edit": "Edit Item"
+      },
+      "text-field": "Question",
+      "actions": {
+        "close": "Close",
+        "save": "Save"
+      }
+    },
+    "multiple-table-label": "Answer",
+    "headers": {
+      "question": "Criterion name (question)",
+      "answers": "Answer to the question",
+      "scores": "Score",
+      "action": "Actions"
+    },
+    "dialog": {
+      "text": "Do you really want to delete question?",
+      "title": "Delete"
+    }
+  },
+  "main": {
+    "toolbar-title": "Welcome To Clevel App!",
+    "form": {
+      "btn": "Create New Model Board",
+      "p-1": "or...",
+      "file-input": "Upload your model board file...",
+      "p-2": "or you can try {a}",
+      "showcase-mode": "showcase mode"
+    },
+    "dialog": {
+      "title": "Create New Model Board",
+      "file-name": "File name",
+      "experts": "Experts count",
+      "models": "Models count",
+      "action-cancel": "Cancel",
+      "action-create": "Create"
+    }
+  },
+  "model-board": {
+    "btn": "Start Testing",
+    "empty": "Create some models using the app bar 'Add New' button..."
+  },
+  "testing": {
+    "back": "Back",
+    "experts": "Experts",
+    "models": "Models",
+    "questions": "Questions",
+    "err-1": "Choose expert and model.",
+    "err-2": "You have completed this model. Choose another or same one to repeat.",
+    "loading": "Loading...",
+    "step": "Question {index}",
+    "continue": "Continue"
+  }
+}
