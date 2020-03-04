@@ -9,6 +9,7 @@ import 'roboto-fontface/css/roboto/roboto-fontface.css';
 import '@mdi/font/css/materialdesignicons.css';
 import 'vuetify-dialog/dist/vuetify-dialog.css';
 import 'katex/dist/katex.min.css';
+import i18n from './i18n';
 
 Vue.config.productionTip = false;
 
@@ -24,5 +25,6 @@ new Vue({
   router,
   store,
   vuetify,
+  i18n,
   render: h => h(App),
 }).$mount('#app');
