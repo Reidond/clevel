@@ -1,0 +1,10 @@
+{
+  "add-new": {
+    "btn": "Add New",
+    "btn-save": "Save",
+    "btn-close": "Close",
+    "title": "Add New Model",
+    "text-field": "Name of model*",
+    "notice": "*indicates required field"
+  }
+}
