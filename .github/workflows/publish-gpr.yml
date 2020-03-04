@@ -11,12 +11,6 @@ jobs:
         steps:
             - name: checkout
               uses: actions/checkout@master
-            - name: node
-              uses: actions/setup-node@v1
-              with:
-                node-version: 12
-                registry-url: https://npm.pkg.github.com/
-                scope: '@reidond'
             - name: rust
               uses: hecrj/setup-rust-action@v1
               with:
@@ -29,6 +23,11 @@ jobs:
               run: |
                   wasm-pack build
             - name: publish gpr
+              uses: actions/setup-node@v1
+              with:
+                  node-version: 12
+                  registry-url: https://npm.pkg.github.com/
+                  scope: "@reidond"
               run: |
                   cd pkg/
                   npm publish
