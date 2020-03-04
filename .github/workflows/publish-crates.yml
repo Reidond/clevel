@@ -1,0 +1,24 @@
+name: Publish Crates
+
+on:
+    push:
+        branches:
+            - master
+
+jobs:
+    publish-npm:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout
+              uses: actions/checkout@master
+            - name: rust
+              uses: hecrj/setup-rust-action@v1
+              with:
+                  rust-version: 1.41.1
+            - name: cargo
+              uses: thiagoarrais/action-cargo@master
+            - name: publish crates
+              run: |
+                  cargo publish
+              env:
+                  NODE_AUTH_TOKEN: ${{secrets.CRATES_AUTH_TOKEN}}
