@@ -61,5 +61,23 @@
       "text": "Do you really want to delete question?",
       "title": "Delete"
     }
+  },
+  "main": {
+    "toolbar-title": "Welcome To Clevel App!",
+    "form": {
+      "btn": "Create New Model Board",
+      "p-1": "or...",
+      "file-input": "Upload your model board file...",
+      "p-2": "or you can try {a}",
+      "showcase-mode": "showcase mode"
+    },
+    "dialog": {
+      "title": "Create New Model Board",
+      "file-name": "File name",
+      "experts": "Experts count",
+      "models": "Models count",
+      "action-cancel": "Cancel",
+      "action-create": "Create"
+    }
   }
 }
