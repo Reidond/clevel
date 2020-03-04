@@ -7,7 +7,7 @@
         }}</v-btn>
       </v-btn-toggle>
     </template>
-    <v-card>
+    <v-card outlined>
       <v-card-title>
         <span class="headline">{{ $t('settings.card.title') }}</span>
       </v-card-title>
@@ -40,10 +40,10 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="blue darken-1" text @click="close">{{
-          $t('settings.action-cancel')
+          $t('settings.card.action-cancel')
         }}</v-btn>
         <v-btn color="blue darken-1" text @click="save">{{
-          $t('settings.action-save')
+          $t('settings.card.action-save')
         }}</v-btn>
       </v-card-actions>
     </v-card>

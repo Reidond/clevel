@@ -8,7 +8,7 @@
     "notice": "*позначає обов'язкове поле"
   },
   "multiple-table": {
-    "btn-new": "Новий {label}",
+    "btn-new": "Нове {label}",
     "btn-close": "Закрити",
     "btn-edit": "Змінити",
     "btn-save": "Зберегти"
