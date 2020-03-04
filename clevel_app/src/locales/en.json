@@ -83,5 +83,16 @@
   "model-board": {
     "btn": "Start Testing",
     "empty": "Create some models using the app bar 'Add New' button..."
+  },
+  "testing": {
+    "back": "Back",
+    "experts": "Experts",
+    "models": "Models",
+    "questions": "Questions",
+    "err-1": "Choose expert and model.",
+    "err-2": "You have completed this model. Choose another or same one to repeat.",
+    "loading": "Loading...",
+    "step": "Question {index}",
+    "continue": "Continue"
   }
 }
