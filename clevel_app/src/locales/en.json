@@ -36,5 +36,30 @@
       "action-cancel": "Cancel",
       "action-save": "Save"
     }
+  },
+  "table": {
+    "new-item-btn": "New Item",
+    "card": {
+      "title": {
+        "new": "New Item",
+        "edit": "Edit Item"
+      },
+      "text-field": "Question",
+      "actions": {
+        "close": "Close",
+        "save": "Save"
+      }
+    },
+    "multiple-table-label": "Answer",
+    "headers": {
+      "question": "Criterion name (question)",
+      "answers": "Answer to the question",
+      "scores": "Score",
+      "action": "Actions"
+    },
+    "dialog": {
+      "text": "Do you really want to delete question?",
+      "title": "Delete"
+    }
   }
 }
