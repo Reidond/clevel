@@ -25,5 +25,8 @@
       "row-3": "On the received data we conclude: expert {katexExpert} scored maximum points {katexScore} and according to the condition of the task, we choose him as the head of the expert group.",
       "action": "OK"
     }
+  },
+  "save": {
+    "btn": "Save"
   }
 }
