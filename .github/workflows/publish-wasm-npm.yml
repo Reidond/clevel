@@ -27,7 +27,6 @@ jobs:
                   curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
             - name: publish
               run: |
-                  npm ci
                   wasm-pack publish
               env:
                   NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
