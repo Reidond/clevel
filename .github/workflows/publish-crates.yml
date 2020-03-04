@@ -6,7 +6,7 @@ on:
             - master
 
 jobs:
-    publish-npm:
+    publish:
         runs-on: ubuntu-latest
         steps:
             - name: checkout
@@ -21,4 +21,4 @@ jobs:
               run: |
                   cargo publish
               env:
-                  NODE_AUTH_TOKEN: ${{secrets.CRATES_AUTH_TOKEN}}
+                  CRATES_AUTH_TOKEN: ${{secrets.CRATES_AUTH_TOKEN}}
