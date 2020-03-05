@@ -1,6 +1,9 @@
 <template>
   <div>
     <AppBar title="Clevel">
+      <v-btn class="mr-3" outlined color="yellow" to="/">{{
+        $t('model-board.btn-back')
+      }}</v-btn>
       <Save />
       <AddNew />
       <v-btn outlined to="/testing">{{ $t('model-board.btn') }}</v-btn>
