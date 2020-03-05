@@ -1,6 +1,6 @@
 [package]
 name = "clevel"
-version = "0.1.5"
+version = "0.1.6"
 description = "Assessment of expert competence"
 authors = [ "Andrii Shafar <andreyshafar@gmail.com>" ]
 repository = "https://github.com/Reidond/clevel"
