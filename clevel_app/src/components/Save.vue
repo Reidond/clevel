@@ -1,5 +1,5 @@
 <template
-  ><v-btn color="green" class="mr-3" primary @click="save">{{
+  ><v-btn color="green" class="mr-3" outlined @click="save">{{
     $t('save.btn')
   }}</v-btn>
 </template>
