@@ -5,8 +5,7 @@
         <v-select
           v-model="$i18n.locale"
           :items="langs"
-          :item-text="itemText"
-          :item-value="langs"
+          item-value="uk_UA"
           outlined
           full-width
           value="uk_UA"
