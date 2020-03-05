@@ -70,7 +70,7 @@ dependencies = [
 
 [[package]]
 name = "clevel"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "clap",
  "console_error_panic_hook",

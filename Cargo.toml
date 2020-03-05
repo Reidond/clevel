@@ -43,3 +43,10 @@ wasm-bindgen-test = "0.3.8"
 [profile.release]
 # Tell `rustc` to optimize for small code size.
 opt-level = "s"
+
+[badges]
+is-it-maintained-issue-resolution = { repository = "https://github.com/Reidond/clevel" }
+
+is-it-maintained-open-issues = { repository = "https://github.com/Reidond/clevel" }
+
+maintenance = { status = "as-is" }
