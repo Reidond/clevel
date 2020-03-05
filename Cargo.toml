@@ -1,6 +1,6 @@
 [package]
 name = "clevel"
-version = "0.1.6"
+version = "0.1.7"
 description = "Assessment of expert competence"
 authors = [ "Andrii Shafar <andreyshafar@gmail.com>" ]
 repository = "https://github.com/Reidond/clevel"
@@ -45,8 +45,4 @@ wasm-bindgen-test = "0.3.8"
 opt-level = "s"
 
 [badges]
-is-it-maintained-issue-resolution = { repository = "https://github.com/Reidond/clevel" }
-
-is-it-maintained-open-issues = { repository = "https://github.com/Reidond/clevel" }
-
 maintenance = { status = "as-is" }
