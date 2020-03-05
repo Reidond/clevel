@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AppBar title="Clevel">
+    <AppBar title="Expert evaluation">
       <v-btn class="mr-3" outlined color="yellow" to="/">{{
         $t('model-board.btn-back')
       }}</v-btn>
